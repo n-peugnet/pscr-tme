@@ -21,6 +21,8 @@ public:
 	bool debiter(unsigned int val);
 	int getSolde() const;
 
+//	std::recursive_mutex
+
 //	Interface Lockable
 	void lock() const;
 	void unlock() const;

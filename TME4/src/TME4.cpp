@@ -13,15 +13,16 @@
 
 using namespace std;
 
-const size_t NB_THREAD = 10;
+const size_t NB_THREAD = 100;
 const size_t NB_COMPTE = 5;
 
 void work(pr::Banque &banque) {
 	size_t i = rand() % NB_COMPTE;
 	size_t j = rand() % NB_COMPTE;
 	int montant = rand() % 100 + 1;
-	cout << i << " --" << montant << "-> " << j << endl;
-	banque.transfert(i, j, montant);
+	string success = banque.transfert(i, j, montant) ? "success" : "fail";
+//	cout << i << " -" << montant << "-> " << j << endl;
+	cout << success << endl;
 	std::chrono::duration<double, std::milli> stime(rand() % 20);
 	this_thread::sleep_for(stime);
 }
