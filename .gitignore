@@ -1,5 +1,6 @@
 #eclipse workspace
 .metadata
+.settings/
 
 #eclipse bluids
 Debug/
