@@ -14,22 +14,16 @@ Banque::Banque(size_t ncomptes, size_t solde) :
 		comptes(ncomptes, Compte(solde)) {
 }
 bool Banque::transfert(size_t deb, size_t cred, unsigned int val) {
-	bool success = false;
 	Compte &debiteur = comptes[deb];
 	Compte &crediteur = comptes[cred];
-//	pr::ul ld(debiteur);
-//	lock(, ul lc(crediteur));
-	debiteur.lock();
-	crediteur.lock();
+	ulrm lock_debiteur(debiteur.getMutex(), std::defer_lock);
+	ulrm lock_crediteur(crediteur.getMutex(), std::defer_lock);
+	std::lock(lock_debiteur, lock_crediteur);
 	if (debiteur.debiter(val)) {
-		if (crediteur.try_lock()) {
-			crediteur.crediter(val);
-			success = true;
-			crediteur.unlock();
-		}
+		crediteur.crediter(val);
+		return true;
 	}
-	debiteur.unlock();
-	return success;
+	return false;
 }
 size_t Banque::size() const {
 	return comptes.size();

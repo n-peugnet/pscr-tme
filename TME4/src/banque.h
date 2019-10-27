@@ -13,7 +13,7 @@
 
 namespace pr {
 
-typedef std::unique_lock<std::recursive_mutex> ul;
+typedef std::unique_lock<std::recursive_mutex> ulrm;
 
 class Banque {
 	typedef std::vector<Compte> comptes_t;

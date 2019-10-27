@@ -37,6 +37,10 @@ int Compte::getSolde() const {
 	return solde;
 }
 
+recursive_mutex & Compte::getMutex() const {
+	return m;
+}
+
 
 //	Interface Lockable
 void Compte::lock() const {
