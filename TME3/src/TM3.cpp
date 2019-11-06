@@ -10,7 +10,7 @@ int main () {
 	using namespace std;
 	using namespace std::chrono;
 
-	ifstream input = ifstream("/tmp/WarAndPeace.txt");
+	ifstream input = ifstream("./test/WarAndPeace.txt");
 
 	auto start = steady_clock::now();
 	cout << "Parsing War and Peace" << endl;
@@ -25,7 +25,7 @@ int main () {
 	vector<pair<string,int>> vecteur;
 	vecteur.reserve(6000000);
 
-	pr::HashMap<string,int> hashmap(2<<17);
+	pr::HashMap<string,int> hashmap(2<<10);
 
 	// compteur de mots différents
 	size_t wc = 0;
@@ -71,8 +71,8 @@ int main () {
               << "ms.\n";
 
     cout << "Found a total of " << nombre_lu << " words." << endl;
-    cout << "Vector size: " << hashmap.size()<< endl;
-    cout << "Vector size: " << count(vecteur.begin(), vecteur.end()) << endl;
+    cout << "Vector size: " << hashmap.size() << endl;
+    cout << "Vector size: " << count(hashmap.begin(), hashmap.end()) << endl;
     cout << "Mots différent: " << wc << endl;
     cout << "Nb a: " << *hashmap.get("war") << endl;
 
