@@ -22,6 +22,7 @@ public:
 	Banque(size_t ncomptes, size_t solde);
 	bool transfert(size_t deb, size_t cred, unsigned int val);
 	size_t size() const;
+	bool comptabiliser(int attendu) const;
 };
 
 } /* namespace pr */

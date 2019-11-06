@@ -7,6 +7,7 @@
 //============================================================================
 
 #include <iostream>
+#include <atomic>
 #include <vector>
 #include <thread>
 #include "banque.h"
@@ -15,6 +16,10 @@ using namespace std;
 
 const size_t NB_THREAD = 100;
 const size_t NB_COMPTE = 5;
+const int SOLDE_DEPART = 100;
+const int ATTENDU = NB_COMPTE * SOLDE_DEPART;
+
+atomic<bool> run(true);
 
 void work(pr::Banque &banque) {
 	size_t i = rand() % NB_COMPTE;
@@ -27,8 +32,17 @@ void work(pr::Banque &banque) {
 	this_thread::sleep_for(stime);
 }
 
+void comptabiliser(pr::Banque &banque) {
+	while(run) {
+		if (!banque.comptabiliser(ATTENDU)) {
+
+		}
+	}
+}
+
 int main() {
-	pr::Banque banque(NB_COMPTE, 100);
+	pr::Banque banque(NB_COMPTE, SOLDE_DEPART);
+	thread th_comptable(comptabiliser, ref(banque));
 	vector<thread> threads;
 	threads.reserve(NB_THREAD);
 	for (size_t i = 0; i < NB_THREAD; i++) {
@@ -38,5 +52,7 @@ int main() {
 //		cout << "thread " << t.get_id() << " joined!" << endl;
 		t.join();
 	}
+	run = false;
+	th_comptable.join();
 	return 0;
 }
