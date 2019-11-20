@@ -1,3 +1,6 @@
 [submodule "TME5"]
 	path = TME5
 	url = https://github.com/n-peugnet/TME5
+[submodule "TME6"]
+	path = TME6
+	url = https://pscr-gitlab.lip6.fr/3872867/tme6
