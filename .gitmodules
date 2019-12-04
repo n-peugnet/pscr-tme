@@ -4,3 +4,9 @@
 [submodule "TME6"]
 	path = TME6
 	url = https://pscr-gitlab.lip6.fr/3872867/tme6
+[submodule "TME7"]
+	path = TME7
+	url = https://pscr-gitlab.lip6.fr/3872867/TME7
+[submodule "TME8"]
+	path = TME8
+	url = https://pscr-gitlab.lip6.fr/3872867/TME8
